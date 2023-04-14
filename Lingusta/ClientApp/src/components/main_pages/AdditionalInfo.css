@@ -1,0 +1,67 @@
+.additional-info-container {
+    width: 650px;
+    height: 580px;
+    margin-top: 103px;
+    box-shadow: 0px 1px 20px -4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+}
+
+form {
+    margin: 36px 30px 0 30px;
+}
+
+.label {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.flex-container {
+    margin-top: 28px;
+    margin-bottom: 35px;
+    display: flex;
+}
+
+.avatar-container {
+    height: 241px;
+    width: 295px;
+}
+
+.avatar-label {
+    margin: 0;
+}
+
+.avatar-input {
+    display: none;
+}
+
+.avatar {
+    cursor: pointer;
+    display: flex;
+    justify-content: end;
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    background-size: cover;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.delete-avatar-btn {
+    height: 20px;
+    width: 20px;
+    border: none;
+    background-color: transparent;
+    background-size: cover;
+    background-image: url(../../img/cross.png);
+}
+
+.languages-container {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

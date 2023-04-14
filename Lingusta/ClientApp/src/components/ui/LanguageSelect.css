@@ -1,0 +1,70 @@
+.language-select {
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    width: 295px;
+
+}
+
+.selected {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+
+    height: 50px;
+    width: 295px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+}
+
+.selected img {
+    width: 40px;
+    height: 26px;
+    border-radius: 5px;
+    margin-right: 8px;
+}
+
+.options {
+    position: absolute;
+    top: 100%;
+    left: 10px;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.options li {
+    display: flex;
+    align-items: center;
+    width: 275px;
+    padding: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.options li:hover {
+    background-color: #f5f5f5;
+}
+
+.options li img {
+    width: 40px;
+    height: 26px;
+    border-radius: 5px;
+    margin-right: 8px;
+}
