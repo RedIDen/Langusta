@@ -24,11 +24,11 @@ const AppRoutes = [
     element: <AdditiontalInfo />
   },
   {
-    path: '/test',
+    path: '/test/:title',
     element: <TestPage />
   },
   {
-    path: '/theory',
+    path: '/theory/:title',
     element: <TheoryPage />
   },
   {

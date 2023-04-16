@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import NavMenu from './layout_elements/NavMenu';
 import Footer from './layout_elements/Footer';
+import './Layout.css';
 
 export class Layout extends Component {
   static displayName = Layout.name;
 
   render() {
     return (
-      <div>
+      <div className="flex">
         <NavMenu />
-        <Container className="d-flex justify-content-center">
+        <div className="layout">
           {this.props.children}
-        </Container>
+        </div>
         <Footer />
       </div>
     );

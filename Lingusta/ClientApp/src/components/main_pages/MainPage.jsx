@@ -1,36 +1,50 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import "./MainPage.css";
+import ThemesList from '../ui/ThemesList';
 
 const MainPage = () => {
+
+    const theoryThemes = [
+        {
+            "theme": "Тема 1", "subthemes": [
+                "a", "b", "c",
+            ]
+        },
+        {
+            "theme": "Тема 2", "subthemes": [
+                "aagasfg", "badfhzrh", "czthzdthtr",
+            ]
+        },
+    ];
+
+    const testThemes = [
+        {
+            "theme": "Тема 1", "subthemes": [
+                "a", "b", "c",
+            ]
+        },
+        {
+            "theme": "Тема 2", "subthemes": [
+                "aagasfg", "badfhzrh", "czthzdthtr",
+            ]
+        },
+    ];
+
     return (
         <div className="main-page">
             <div className="column">
-                <h3>Темы для изучения языка</h3>
-                <ul>
-                    <li>
-                        <select>
-                            <option>Выберите тему</option>
-                            <option><Link to="/theory-page">Тема 1</Link></option>
-                            <option><Link to="/theory-page">Тема 2</Link></option>
-                            <option><Link to="/theory-page">Тема 3</Link></option>
-                        </select>
-                    </li>
-                </ul>
+                <p className="column-title">Продолжить изучать язык</p>
+                <ThemesList themes={theoryThemes} link="theory/" />
             </div>
             <div className="column">
-                <h3>Темы для тестов</h3>
-                <ul>
-                    <li>
-                        <select>
-                            <option>Выберите тему</option>
-                            <option><Link to="/test-page">Тема 1</Link></option>
-                            <option><Link to="/test-page">Тема 2</Link></option>
-                            <option><Link to="/test-page">Тема 3</Link></option>
-                        </select>
-                    </li>
-                </ul>
+                <p className="column-title">Проверить свои знания</p>
+                <ThemesList themes={testThemes} link="test/" />
             </div>
             <div className="column">
+                <p className="column-title">Тесты</p>
+                <button>Тексты пользователей</button>
+                <br />
+                <button>Написать свой текст</button>
             </div>
         </div>
     );

@@ -1,0 +1,78 @@
+.list {
+    width: 100%;
+}
+
+.theme-button-container {
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 30px;
+    background: #FFFFFF;
+    border-left: 1px solid rgba(0, 0, 0, 0.3);
+    border-right: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+
+    border-radius: 10px;
+}
+
+.theme-button {
+    margin-left: -10px;
+    padding: 0 20px 0 20px;
+    width: 433px;
+    height: 50px;
+    background: #115700;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    font-style: normal;
+    text-align: start;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    color: #FFFFFF;
+}
+
+.theme-button-selected {
+    margin-left: -10px;
+    padding: 0 20px 0 20px;
+    width: 433px;
+    height: 50px;
+    color: #000000;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    font-style: normal;
+    text-align: start;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    background: #FFFFFF;
+}
+
+.subthemes-container {
+    padding: 10px 30px 10px 30px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    text-decoration-line: underline;
+
+    color: rgba(0, 0, 0, 0.75);
+}
+
+.subtheme {
+    display: flex;
+    align-items: center;
+}
+
+.round {
+    box-sizing: border-box;
+    width: 10px;
+    height: 10px;
+    background: #115700;
+    border: 1px solid #115700;
+    border-radius: 50%;
+}
+
+.theme-link {
+    margin-left: 15px;
+    color: #115700;
+}

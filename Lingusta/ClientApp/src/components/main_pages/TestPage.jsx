@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+
 
 const TestPage = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
+    const navigate = useNavigate();
 
     const handleAnswer = (isCorrect) => {
         if (isCorrect) {
@@ -13,9 +16,14 @@ const TestPage = () => {
         }
     };
 
+    const handleEnd = () => {
+        let path = `/main`;
+        navigate(path);
+    }
+
     const questions = [
         {
-            "question": "Хочу писять?", "answers": [
+            "question": "Ты еблан?", "answers": [
                 { "text": "Да", "isCorrect": true },
                 { "text": "Нет", "isCorrect": false },
                 { "text": "Не знаю", "isCorrect": false },
@@ -23,7 +31,7 @@ const TestPage = () => {
             ]
         },
         {
-            "question": "Хочу какать?", "answers": [
+            "question": "Точно?", "answers": [
                 { "text": "Да", "isCorrect": true },
                 { "text": "Нет", "isCorrect": false },
                 { "text": "Не знаю", "isCorrect": false },
@@ -49,7 +57,7 @@ const TestPage = () => {
                 :
                 <div className="score">
                     <p>Вы набрали {score} из {questions.length} баллов</p>
-                    <button>Завершить</button>
+                    <button onClick={handleEnd}>Завершить</button>
                 </div>}
         </div>
     );
