@@ -41,10 +41,9 @@ const MainPage = () => {
                 <ThemesList themes={testThemes} link="test/" />
             </div>
             <div className="column">
-                <p className="column-title">Тесты</p>
-                <button>Тексты пользователей</button>
-                <br />
-                <button>Написать свой текст</button>
+                <p className="column-title">Тексты</p>
+                <button className="user-text-button">Тексты пользователей</button>
+                <button className="user-text-button">Написать свой текст</button>
             </div>
         </div>
     );

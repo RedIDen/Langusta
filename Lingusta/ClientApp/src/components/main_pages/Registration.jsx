@@ -3,6 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import openedEye from '../../img/opened-eye.png';
 import closedEye from '../../img/closed-eye.png';
+import { useTranslation } from 'react-i18next';
 
 const Registraion = (props) => {
     const [email, setEmail] = useState("");
@@ -11,6 +12,7 @@ const Registraion = (props) => {
     const [secondPassword, setSecondPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [showSecondPassword, setShowSecondPassword] = useState(false);
+    const [t, i18n] = useTranslation();
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -42,10 +44,10 @@ const Registraion = (props) => {
 
     return (
         <div className="registration">
-            <p className="title">Регистрация</p>
+            <p className="title">{t("registration")}</p>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label className="input-label" htmlFor="email">Электронная почта</label>
+                    <label className="input-label" htmlFor="email">{t("email")}</label>
                     <input
                         className="text-input"
                         type="email"
@@ -55,7 +57,7 @@ const Registraion = (props) => {
                     />
                 </div>
                 <div className="password-container">
-                    <label className="input-label" htmlFor="name">Имя</label>
+                    <label className="input-label" htmlFor="name">{t("name")}</label>
                     <input
                         className="text-input"
                         type="text"
@@ -65,7 +67,7 @@ const Registraion = (props) => {
                     />
                 </div>
                 <div className="password-container">
-                    <label className="input-label" htmlFor="password">Пароль</label>
+                    <label className="input-label" htmlFor="password">{t("password")}</label>
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <input
                             className="text-input"
@@ -80,7 +82,7 @@ const Registraion = (props) => {
                     </div>
                 </div>
                 <div className="password-container">
-                    <label className="input-label" htmlFor="password">Повторите пароль</label>
+                    <label className="input-label" htmlFor="password">{t("repeat-password")}</label>
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <input
                             className="text-input"
@@ -94,9 +96,9 @@ const Registraion = (props) => {
                         </button>
                     </div>
                 </div>
-                <button className="enter-button" type="submit">Зарегистрироваться</button>
+                <button className="enter-button" type="submit">{t("sign-up")}</button>
                 <div className="register-link">
-                    <a href="/authentication">Войти</a>
+                    <a href="/authorization">{t("sign-in")}</a>
                 </div>
             </form>
         </div>

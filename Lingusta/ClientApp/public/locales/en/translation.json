@@ -1,0 +1,17 @@
+{
+    "authorization": "Authorization",
+    "email": "Email",
+    "password": "Password",
+    "stay-in-system": "Stay authorized",
+    "sign-in": "Sign in",
+    "sign-up": "Sign up",
+    "registration": "Registration",
+    "name": "Name",
+    "repeat-password": "Repeat password",
+    "describe-yourself": "Describe yourself",
+    "your-moto": "Your moto (unnecessary)",
+    "avatar": "Avatar (unnecessary)",
+    "native-language": "Select your native language",
+    "learning-language": "Select a language to learn",
+    "continue": "Continue"
+}

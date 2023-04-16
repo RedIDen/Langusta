@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import openedEye from '../../img/opened-eye.png';
 import closedEye from '../../img/closed-eye.png';
+import { useTranslation } from 'react-i18next';
 
 
 const Authentication = (props) => {
@@ -12,6 +13,7 @@ const Authentication = (props) => {
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
     const navigate = useNavigate();
+    const [t, i18n] = useTranslation();
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -40,10 +42,10 @@ const Authentication = (props) => {
 
     return (
         <div className="authentication">
-            <p className="title">Авторизация</p>
+            <p className="title">{t("authorization")}</p>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label className="input-label" htmlFor="email">Электронная почта</label>
+                    <label className="input-label" htmlFor="email">{t("email")}</label>
                     <input
                         className="text-input"
                         type="email"
@@ -53,7 +55,7 @@ const Authentication = (props) => {
                     />
                 </div>
                 <div className="password-container">
-                    <label className="input-label" htmlFor="password">Пароль</label>
+                    <label className="input-label" htmlFor="password">{t("password")}</label>
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <input
                             className="text-input"
@@ -77,12 +79,12 @@ const Authentication = (props) => {
                         onChange={handleRememberMeChange}
                     />
                     <label htmlFor="rememberMe">
-                        Оставаться в системе
+                        {t("stay-in-system")}
                     </label>
                 </div>
-                <button className="enter-button" onClick={login} type="submit">Войти</button>
+                <button className="enter-button" onClick={login} type="submit">{t("sign-in")}</button>
                 <div className="register-link">
-                    <a href="/registration">Зарегистрироваться</a>
+                    <a href="/registration">{t("sign-up")}</a>
                 </div>
             </form>
         </div>

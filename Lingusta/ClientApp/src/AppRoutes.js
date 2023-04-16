@@ -9,14 +9,14 @@ import TheoryPage from "./components/main_pages/TheoryPage";
 const AppRoutes = [
   {
     index: true,
-    element: <Navigate to='/authentication' />
+    element: <Navigate to='/authorization' />
   },
   {
     path: '/registration',
     element: <Registration />
   },
   {
-    path: '/authentication',
+    path: '/authorization',
     element: <Authentication />
   },
   {
