@@ -7,11 +7,10 @@ const NavMenu = (props) => {
   let isAuthenticated = false;
 
   const [t, i18n] = useTranslation();
-  const [language, setLanguage] = useState("en");
 
-  function handleChangeLanguage() {
-    setLanguage(language == "ru" ? "en" : "ru");
-    i18n.changeLanguage(language);
+  async function handleChangeLanguage() {
+    await i18n.changeLanguage(i18n.language == "ru" ? "en" : "ru");
+    localStorage.setItem("lang", i18n.language);
   }
 
   return (
