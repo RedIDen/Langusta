@@ -5,14 +5,14 @@ import openedEye from '../../img/opened-eye.png';
 import closedEye from '../../img/closed-eye.png';
 import { useTranslation } from 'react-i18next';
 
-const Registraion = (props) => {
+const Registraion = () => {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [secondPassword, setSecondPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [showSecondPassword, setShowSecondPassword] = useState(false);
-    const [t, i18n] = useTranslation();
+    const [t, _] = useTranslation();
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -38,8 +38,32 @@ const Registraion = (props) => {
         setShowSecondPassword(!showSecondPassword);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+
+        try {
+            const response = await fetch('/api/Registration/Register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, name, password, secondPassword }),
+            });
+
+            if (response.ok) {
+                console.log('Registration successful!');
+            } else {
+                const error = await response.text();
+                console.error('Registration failed:', error);
+            }
+        } catch (error) {
+            console.error('Registration failed:', error);
+        }
+
+        setEmail('');
+        setName('');
+        setPassword('');
+        setSecondPassword('');
     };
 
     return (

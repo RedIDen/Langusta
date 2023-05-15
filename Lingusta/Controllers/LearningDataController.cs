@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Lingusta.Controllers
 {
@@ -13,10 +14,39 @@ namespace Lingusta.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public IEnumerable<int> Get()
+        [Authorize]
+        [HttpGet("TheoryThemes")]
+        public ActionResult<IEnumerable<TheoryTheme>> TheoryThemes()
         {
-            return new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
+            return StatusCode(StatusCodes.Status200OK, new TheoryTheme[]
+            {
+                new TheoryTheme
+                {
+                    Theme = "Говно",
+                    Subthemes = new[]
+                    {
+                        "Жопа",
+                        "Попа",
+                        "Пися",
+                    }
+                },
+                new TheoryTheme
+                {
+                    Theme = "Бебра",
+                    Subthemes = new[]
+                    {
+                        "Кашка",
+                        "Какашка",
+                        "Неваляшка",
+                    }
+                },
+            });
+        }
+
+        public class TheoryTheme
+        {
+            public string Theme { get; set; }
+            public string[] Subthemes { get; set; }
         }
     }
 }

@@ -7,13 +7,13 @@ import closedEye from '../../img/closed-eye.png';
 import { useTranslation } from 'react-i18next';
 
 
-const Authentication = (props) => {
+const Authentication = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
     const navigate = useNavigate();
-    const [t, i18n] = useTranslation();
+    const [t, _] = useTranslation();
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -31,14 +31,37 @@ const Authentication = (props) => {
         setRememberMe(event.target.checked);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-    };
 
-    const login = () => {
-        let path = `/first-login`;
-        navigate(path);
-    }
+        try {
+            const response = await fetch('/api/Registration/Login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password, rememberMe }),
+            });
+
+            if (response.ok) {
+                const token = await response.text();
+                localStorage.setItem('token', token);
+
+                console.log('Login successful!');
+
+                let path = `/first-login`;
+                navigate(path);
+            } else {
+                const error = await response.text();
+                console.error('Login failed:', error);
+            }
+        } catch (error) {
+            console.error('Login failed:', error);
+        }
+
+        setEmail('');
+        setPassword('');
+    };
 
     return (
         <div className="authentication">
@@ -82,7 +105,7 @@ const Authentication = (props) => {
                         {t("stay-in-system")}
                     </label>
                 </div>
-                <button className="enter-button" onClick={login} type="submit">{t("sign-in")}</button>
+                <button className="enter-button" type="submit">{t("sign-in")}</button>
                 <div className="register-link">
                     <a href="/registration">{t("sign-up")}</a>
                 </div>

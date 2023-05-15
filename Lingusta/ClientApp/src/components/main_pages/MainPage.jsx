@@ -1,21 +1,42 @@
 import React from 'react';
 import "./MainPage.css";
 import ThemesList from '../ui/ThemesList';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const MainPage = () => {
+    const [theoryThemes, setTheoryThemes] = useState([])
+    const token = localStorage.getItem('token');
 
-    const theoryThemes = [
-        {
-            "theme": "Тема 1", "subthemes": [
-                "a", "b", "c",
-            ]
-        },
-        {
-            "theme": "Тема 2", "subthemes": [
-                "aagasfg", "badfhzrh", "czthzdthtr",
-            ]
-        },
-    ];
+    useEffect(() => {
+        console.log(token);
+        fetch("api/LearningData/TheoryThemes", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+            .then(response => {
+                return response.json();
+            })
+            .then(responseJson => {
+                setTheoryThemes(responseJson);
+            })
+    }, []);
+
+    // const theoryThemes = [
+    //     {
+    //         "theme": "Тема 1",
+    //         "subthemes": [
+    //             "a", "b", "c",
+    //         ]
+    //     },
+    //     {
+    //         "theme": "Тема 2",
+    //         "subthemes": [
+    //             "aagasfg", "badfhzrh", "czthzdthtr",
+    //         ]
+    //     },
+    // ];
 
     const testThemes = [
         {
