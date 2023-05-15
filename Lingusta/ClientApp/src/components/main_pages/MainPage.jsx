@@ -23,21 +23,6 @@ const MainPage = () => {
             })
     }, []);
 
-    // const theoryThemes = [
-    //     {
-    //         "theme": "Тема 1",
-    //         "subthemes": [
-    //             "a", "b", "c",
-    //         ]
-    //     },
-    //     {
-    //         "theme": "Тема 2",
-    //         "subthemes": [
-    //             "aagasfg", "badfhzrh", "czthzdthtr",
-    //         ]
-    //     },
-    // ];
-
     const testThemes = [
         {
             "theme": "Тема 1", "subthemes": [

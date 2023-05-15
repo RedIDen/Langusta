@@ -9,7 +9,7 @@ namespace Lingusta.Helpers
     {
         private const string SecretKey = "kostik_progger_228";
 
-        public static string GenerateAuthToken(string email)
+        public static string GenerateAuthToken(string email, string name)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(SecretKey);
@@ -17,7 +17,8 @@ namespace Lingusta.Helpers
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                new Claim(ClaimTypes.Email, email)
+                new Claim(ClaimTypes.Email, email),
+                new Claim(ClaimTypes.Name, name),
             }),
                 Expires = DateTime.UtcNow.AddDays(30),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

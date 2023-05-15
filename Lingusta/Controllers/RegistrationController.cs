@@ -1,6 +1,6 @@
-﻿using Lingusta.Helpers;
+﻿using Lingusta.Data;
+using Lingusta.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 
 namespace Lingusta.Controllers
 {
@@ -9,25 +9,23 @@ namespace Lingusta.Controllers
     public class RegistrationController : ControllerBase
     {
         private readonly ILogger<RegistrationController> _logger;
+        private readonly LangustaDbContext _context;
 
-        public RegistrationController(ILogger<RegistrationController> logger)
+        public RegistrationController(ILogger<RegistrationController> logger, LangustaDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         [HttpPost("Register")]
         public ActionResult<int> Register([FromBody] RegistrationData data)
         {
-            // Здесь вы можете обработать данные регистрации, сохранить их в базе данных и выполнить другие необходимые действия
-
-            // Пример: проверка, что пользователь с таким именем пользователя не существует
             if (UserExists(data.Email))
             {
                 return BadRequest("User with the provided username already exists.");
             }
 
-            // Пример: создание нового пользователя в базе данных
-            CreateUser(data.Email, data.Name, data.Password);
+            CreateUser(data);
 
             return Ok("User successfully registered.");
         }
@@ -35,36 +33,24 @@ namespace Lingusta.Controllers
         [HttpPost("Login")]
         public ActionResult<string> Login([FromBody] LoginData data)
         {
-            // Здесь вы можете обработать данные авторизации, проверить их с базой данных и выполнить другие необходимые действия
-
-            // Пример: проверка введенных учетных данных
-            if (IsValidCredentials(data.Email, data.Password))
+            var user = _context.Users.FirstOrDefault(x => x.Email == data.Email && x.Password == data.Password);
+            if (user != null)
             {
-                // Пример: создание и возврат токена аутентификации
-                string token = JwtHelper.GenerateAuthToken(data.Email);
-                return Ok(token);
+                return data.RememberMe ? Ok(JwtHelper.GenerateAuthToken(user.Email, user.Name)) : Ok(string.Empty);
             }
 
             return BadRequest("Invalid username or password.");
         }
 
-        private bool IsValidCredentials(string email, string password)
-        {
-            // Здесь можно реализовать логику проверки учетных данных с базой данных
-            // Вернуть true, если учетные данные действительны, и false в противном случае
-            return true;
-        }
-
         private bool UserExists(string email)
         {
-            // Здесь можно реализовать логику проверки существования пользователя в базе данных
-            // Вернуть true, если пользователь существует, и false в противном случае
-            return false;
+            return _context.Users.Any(x => x.Email == email);
         }
 
-        private void CreateUser(string email, string name, string password)
+        private void CreateUser(RegistrationData data)
         {
-            // Здесь можно реализовать логику создания нового пользователя в базе данных
+            _context.Users.Add(new Data.Models.User { Email = data.Email, Name = data.Name, Password = data.Password, Salt = data.Name });
+            _context.SaveChanges();
         }
     }
 

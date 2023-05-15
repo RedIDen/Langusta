@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Lingusta.Data;
+using Lingusta.Data.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lingusta.Controllers
 {
@@ -8,45 +11,18 @@ namespace Lingusta.Controllers
     public class LearningDataController : ControllerBase
     {
         private readonly ILogger<LearningDataController> _logger;
+        private readonly LangustaDbContext _context;
 
-        public LearningDataController(ILogger<LearningDataController> logger)
+        public LearningDataController(ILogger<LearningDataController> logger, LangustaDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
-        [Authorize]
-        [HttpGet("TheoryThemes")]
-        public ActionResult<IEnumerable<TheoryTheme>> TheoryThemes()
-        {
-            return StatusCode(StatusCodes.Status200OK, new TheoryTheme[]
-            {
-                new TheoryTheme
-                {
-                    Theme = "Говно",
-                    Subthemes = new[]
-                    {
-                        "Жопа",
-                        "Попа",
-                        "Пися",
-                    }
-                },
-                new TheoryTheme
-                {
-                    Theme = "Бебра",
-                    Subthemes = new[]
-                    {
-                        "Кашка",
-                        "Какашка",
-                        "Неваляшка",
-                    }
-                },
-            });
-        }
-
-        public class TheoryTheme
-        {
-            public string Theme { get; set; }
-            public string[] Subthemes { get; set; }
-        }
+        //[Authorize]
+        //[HttpGet("TheoryThemes")]
+        //public ActionResult<IEnumerable<Theme>> TheoryThemes()
+        //{
+        //}
     }
 }
